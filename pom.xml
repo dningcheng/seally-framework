@@ -103,7 +103,8 @@
 		<module>seally-data-sync</module>
 		<module>seally-framework-datasync</module>
     <module>seally-base</module>
-  </modules>
+    <module>seally-data</module>
+	</modules>
 	<build>
 		<plugins>
 			<!-- spring dev -->
