@@ -30,7 +30,9 @@ public class SystemUser extends Pager<SystemUser>{
     private String headImg;
 
     private String address;
-
+    
+    private String remoteHost;
+    
     private Date createTime;
 
     private Date updateTime;
@@ -155,6 +157,14 @@ public class SystemUser extends Pager<SystemUser>{
 
 	public void setRole(SystemRole role) {
 		this.role = role;
+	}
+
+	public String getRemoteHost() {
+		return remoteHost;
+	}
+
+	public void setRemoteHost(String remoteHost) {
+		this.remoteHost = remoteHost;
 	}
     
 }
