@@ -98,10 +98,10 @@
 
 	<modules>
 		<!-- <module>seally-shopcloud</module> -->
-		<module>seally-framework-base</module>
+		
     
-		<module>seally-data-sync</module>
-		<module>seally-framework-datasync</module>
+		
+		
     <module>seally-base</module>
     <module>seally-data</module>
 	</modules>
