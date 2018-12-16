@@ -15,7 +15,9 @@ public class SystemMenu {
 
     private Integer enable;
 
-    private Integer sort;
+    private Integer mindex;//序号
+    
+    private Integer mlevel;//层级
 
     private String detail;
 
@@ -71,15 +73,23 @@ public class SystemMenu {
         this.enable = enable;
     }
 
-    public Integer getSort() {
-        return sort;
-    }
+	public Integer getMindex() {
+		return mindex;
+	}
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
+	public void setMindex(Integer mindex) {
+		this.mindex = mindex;
+	}
 
-    public String getDetail() {
+	public Integer getMlevel() {
+		return mlevel;
+	}
+
+	public void setMlevel(Integer mlevel) {
+		this.mlevel = mlevel;
+	}
+
+	public String getDetail() {
         return detail;
     }
 
