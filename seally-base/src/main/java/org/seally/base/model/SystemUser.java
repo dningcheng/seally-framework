@@ -1,13 +1,16 @@
 package org.seally.base.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.seally.base.utils.Pager;
 
 
-public class SystemUser extends Pager<SystemUser>{
+public class SystemUser extends Pager<SystemUser> implements Serializable{
 	
-    private Integer id;
+	private static final long serialVersionUID = -7741850592377980589L;
+
+	private Integer id;
 
     private String userId;
 
