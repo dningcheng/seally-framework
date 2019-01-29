@@ -13,6 +13,11 @@ public class ApiResponse<T> {
 	
 	public ApiResponse(){}
 	
+	public ApiResponse(String code, String desc) {
+		this.code = code;
+		this.desc = desc;
+	}
+	
 	public ApiResponse(String code, String desc, T data) {
 		this.code = code;
 		this.desc = desc;
