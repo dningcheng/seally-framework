@@ -13,7 +13,7 @@ public class Producer {
 
 		int i = 0;
 		while (true) {
-			String msg = "这是发送出去的第"+i+"条消息";
+			final String msg = "这是发送出去的第"+i+"条消息";
 			ProducerRecord<String, String> record = new ProducerRecord<String, String>("test-topic",msg);//topic、value
 			producer.send(record, new Callback() {
 				public void onCompletion(RecordMetadata metadata, Exception e) {

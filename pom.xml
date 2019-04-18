@@ -1,110 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.seally.framework</groupId>
 	<artifactId>seally-framework</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${seally.framework.version}</version>
 	<packaging>pom</packaging>
 
 	<name>seally-framework</name>
 	<url>http://maven.apache.org</url>
-
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.8.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-
+	
+	<!-- 变量定义 -->
 	<properties>
+		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
+		<seally.framework.version>1.0.0-SNAPSHOT</seally.framework.version>
+		<project.release.version>1.0.0-SNAPSHOT</project.release.version>
 	</properties>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<!-- 集成spring-jdbc依赖，集成后可使用JdbcTemplate访问数据库，此方式与集成mybatis二选一即可，模板方法可查看 
-			https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
-		<!-- 集成mysql驱动 -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<!-- 以下为添加配置 -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>1.0.25</version>
-		</dependency>
-		<!-- 集成mybatis，与集成spring-jdbc可二选一 -->
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>1.3.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-			<version>2.8.2</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>2.8.2</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>1.2.32</version>
-		</dependency>
-		<!-- 集成redis -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-redis</artifactId>
-			<version>1.4.1.RELEASE</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
-		<dependency>
-		    <groupId>org.apache.poi</groupId>
-		    <artifactId>poi</artifactId>
-		    <version>4.0.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
-		<dependency>
-		    <groupId>org.apache.poi</groupId>
-		    <artifactId>poi-ooxml</artifactId>
-		    <version>4.0.0</version>
-		</dependency>
-	</dependencies>
-
+	<profiles>
+		<profile>
+			<id>product</id>
+			<properties>
+				<seally-framework.version>1.0.0</seally-framework.version>
+				<project.release.version>1.0.0</project.release.version>
+			</properties>
+		</profile>
+	</profiles>
+	
+	<!-- 管理模块 -->
 	<modules>
-		<!-- <module>seally-shopcloud</module> -->
-		
-    
-		
-		
-    <module>seally-base</module>
-    <module>seally-data</module>
+		<module>seally-base</module>
+		<module>seally-data</module>
 	</modules>
+	
+	<!-- 统一模块依赖版本号：这里会规定相关依赖的版本号，但是不会真正引入依赖，各个子模块依照自己所需引入具体的依赖，版本号由这里统一规定 -->
+	<dependencyManagement>
+		<dependencies>
+			<!-- 自己的模块 -->
+			<dependency>
+				<groupId>org.seally.framework</groupId>
+				<artifactId>seally-data</artifactId>
+				<version>${project.release.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			
+			<!-- 自己的模块 -->
+			<dependency>
+				<groupId>org.seally.framework</groupId>
+				<artifactId>seally-base</artifactId>
+				<version>${project.release.version}</version>
+				<scope>provided</scope>
+			</dependency>
+		
+			<!-- 集成mysql驱动 -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.40</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<scope>test</scope>
+			</dependency>
+			<!-- 以下为添加配置 -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>1.0.25</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- 集成mybatis，与集成spring-jdbc可二选一 -->
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>1.3.0</version>
+				<scope>provided</scope>				
+			</dependency>
+			<!-- 集成redis -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-redis</artifactId>
+				<version>1.4.1.RELEASE</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>4.0.0</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml</artifactId>
+				<version>4.0.0</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>1.2.32</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>2.8.2</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>2.8.2</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
 	<build>
 		<plugins>
 			<!-- spring dev -->
@@ -115,12 +136,12 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<distributionManagement>
-	    <repository>
-	        <id>maven-snapshots</id>
-	        <url>http://localhost:8081/repository/maven-snapshots/</url>
-	    </repository>
+		<repository>
+			<id>maven-snapshots</id>
+			<url>http://localhost:8081/repository/maven-snapshots/</url>
+		</repository>
 	</distributionManagement>
-	
+
 </project>

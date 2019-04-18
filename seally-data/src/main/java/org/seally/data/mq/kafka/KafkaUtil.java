@@ -11,7 +11,7 @@ public class KafkaUtil {
 
 	private static KafkaProducer<String, String> kp;
 //	private static KafkaConsumer<String, String> kc;
-	private static Map<String,KafkaConsumer<String, String>> kcs = new HashMap<>();//对于消费者来说，消费者需要指定组id因此用集合存储
+	private static Map<String,KafkaConsumer<String, String>> kcs = new HashMap<String,KafkaConsumer<String, String>>();//对于消费者来说，消费者需要指定组id因此用集合存储
 	
 	
 	public static KafkaProducer<String, String> getProducer() {
@@ -34,6 +34,7 @@ public class KafkaUtil {
             props.put("bootstrap.servers", "www.seally.cn:9092");  
             props.put("group.id", groupId);  
             props.put("enable.auto.commit", "true");  
+            props.put("auto.offset.reset", "latest");  
             props.put("auto.commit.interval.ms", "1000");  
             props.put("session.timeout.ms", "30000");  
             props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");  
