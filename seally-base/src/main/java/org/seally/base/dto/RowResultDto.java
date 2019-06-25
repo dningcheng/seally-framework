@@ -7,21 +7,21 @@ import com.alibaba.fastjson.JSON;
 /**
  * @Date 2018年10月27日
  * @author dnc
- * @Description TODO 单行数据操作结果vo
+ * @Description 单行数据操作结果vo
  */
 public class RowResultDto {
 	
-	public static final Integer NUMBER_OPT_SUCCESS = 1;
-	public static final Integer NUMBER_OPT_FAILED = 0;
+	public static final boolean OPT_SUCCESS = true;
+	public static final boolean OPT_FAILED = false;
 	
 	/**
 	 * 主键值（根据实际业务需要指定）
 	 */
-	private String biz;
+	private String id;
 	/**
-	 * 操作结果值  0=失败   1=成功（默认）
+	 * 操作结果
 	 */
-	private Integer result = NUMBER_OPT_SUCCESS;
+	private Boolean result = OPT_SUCCESS;
 	/**
 	 * 附加返回数据（根据实际业务需要指定）
 	 */
@@ -29,26 +29,26 @@ public class RowResultDto {
 	
 	public RowResultDto(){}
 	
-	public RowResultDto(String biz){
-		this.biz = biz;
+	public RowResultDto(String id){
+		this.id = id;
 	}
 	
-	public RowResultDto(Integer result){
+	public RowResultDto(Boolean result){
 		this.result = result;
 	}
 	
-	public RowResultDto(String biz,Integer result){
+	public RowResultDto(String id,Boolean result){
 		this(result);
-		this.biz = biz;
+		this.id = id;
 	}
 	
-	public RowResultDto(String biz,Object data){
-		this(biz);
+	public RowResultDto(String id,Object data){
+		this(id);
 		this.data = data;
 	}
 	
-	public RowResultDto(String biz,Integer result,Object data){
-		this(biz,result);
+	public RowResultDto(String id,Boolean result,Object data){
+		this(id,result);
 		this.data = data;
 	}
 	
@@ -56,37 +56,37 @@ public class RowResultDto {
 		return new RowResultDto();
 	}
 	
-	public static RowResultDto success(String biz){
-		return new RowResultDto(biz);
+	public static RowResultDto success(String id){
+		return new RowResultDto(id);
 	}
 	
-	public static RowResultDto success(String biz,Object data){
-		return new RowResultDto(biz,data);
+	public static RowResultDto success(String id,Object data){
+		return new RowResultDto(id,data);
 	}
 	
 	
 	public static RowResultDto error(){
-		return new RowResultDto(NUMBER_OPT_FAILED);
+		return new RowResultDto(OPT_FAILED);
 	}
 	
-	public static RowResultDto error(String biz){
-		return new RowResultDto(biz,NUMBER_OPT_FAILED);
+	public static RowResultDto error(String id){
+		return new RowResultDto(id,OPT_FAILED);
 	}
 	
-	public static RowResultDto error(String biz,Object data){
-		return new RowResultDto(biz,NUMBER_OPT_FAILED,data);
+	public static RowResultDto error(String id,Object data){
+		return new RowResultDto(id,OPT_FAILED,data);
 	}
 	
-	public String getBiz() {
-		return biz;
+	public String getId() {
+		return id;
 	}
-	public void setBiz(String biz) {
-		this.biz = biz;
+	public void setBiz(String id) {
+		this.id = id;
 	}
-	public Integer getResult() {
+	public Boolean getResult() {
 		return result;
 	}
-	public void setResult(Integer result) {
+	public void setResult(Boolean result) {
 		this.result = result;
 	}
 	public Object getData() {

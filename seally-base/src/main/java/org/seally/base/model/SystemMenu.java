@@ -3,9 +3,9 @@ package org.seally.base.model;
 import java.util.Date;
 
 public class SystemMenu {
-    private Integer id;
+    private String id;
 
-    private Integer pid;
+    private String pid;
 
     private String name;
 
@@ -25,23 +25,23 @@ public class SystemMenu {
 
     private Date updateTime;
 
-    public Integer getId() {
-        return id;
-    }
+    public String getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public Integer getPid() {
-        return pid;
-    }
+	public String getPid() {
+		return pid;
+	}
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
-    }
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
 
-    public String getName() {
+	public String getName() {
         return name;
     }
 

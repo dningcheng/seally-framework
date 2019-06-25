@@ -17,4 +17,7 @@ public interface BaseConstant {
 	
 	/**角色基础 100=暂无角色**/
 	Integer ROLE_BASE_NONE = 100;
+	
+	int MENU_DISABLED = 0;
+	int MENU_ENABLE = 1;
 }

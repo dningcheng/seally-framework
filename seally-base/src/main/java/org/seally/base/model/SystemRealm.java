@@ -2,7 +2,12 @@ package org.seally.base.model;
 
 import java.util.Date;
 
-public class SystemShop {
+/**
+ * @Description 系统域，泛指概念，代表系统中管理数据的边界，不同域中的数据严格互相隔离，系统账号可管理多个域，但是同一个账号登录只能操作当前登录域中的数据，主控台会展示账号管理域中的综合数据
+ * @Date 2019年5月28日
+ * @author 邓宁城
+ */
+public class SystemRealm {
     private Integer id;
 
     private Integer pid;

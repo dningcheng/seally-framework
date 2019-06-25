@@ -6,9 +6,13 @@ import java.util.Properties;
 
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.zookeeper.ZKUtil;
+import org.apache.zookeeper.ZooKeeper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class KafkaUtil {
 
+	
 	private static KafkaProducer<String, String> kp;
 //	private static KafkaConsumer<String, String> kc;
 	private static Map<String,KafkaConsumer<String, String>> kcs = new HashMap<String,KafkaConsumer<String, String>>();//对于消费者来说，消费者需要指定组id因此用集合存储
@@ -44,4 +48,6 @@ public class KafkaUtil {
         }  
         return kcs.get(groupId);  
 	}
+	
+	
 }
